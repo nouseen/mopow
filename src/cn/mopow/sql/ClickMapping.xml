@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.mopow.dao.ClickDao">
+	<insert id="newClick" parameterType="cn.mopow.entity.MpClick">
+		INSERT INTO mk_click (c_id,c_type,c_number,c_name,c_description) VALUES(
+			#{c_id},#{c_type},0,#{c_name},#{c_description}
+		);
+	</insert>
+	<insert id="dailyClickRecord" parameterType="list">
+		INSERT INTO mk_click_daily (c_id,c_time,c_num,c_click_id,c_name)
+			<foreach collection="list">
+				(#{c_id},now(),#{c_num},#{c_click_id},#{c_name})
+			</foreach>
+	
+	</insert>
+	<update id="clickPlusOne" parameterType="string">
+		UPDATE mk_click t2 SET t2.c_number = (SELECT t1.c_number  from (SELECT c_number+1 c_number FROM mk_click WHERE c_id=#{c_id}) t1)  WHERE t2.c_id=#{c_id};
+	</update>
+	<update id="clickPlusByUrl" parameterType="string">
+		UPDATE mk_click t2 SET t2.c_number = (SELECT t1.c_number  from (SELECT c_number+1 c_number FROM mk_click WHERE c_name=#{c_name}) t1)  WHERE t2.c_name=#{c_name};
+	</update>
+	<select id="findAllClick" resultType="cn.mopow.entity.MpClick">
+		SELECT c_name,c_id,c_number,c_type,c_description FROM mk_click;
+	</select>
+	<select id="findById" parameterType="string" resultType="cn.mopow.entity.MpClick">
+		SELECT c_name,c_id,c_number,c_type,c_description FROM mk_click WHERE c_id=#{c_id};
+	
+	</select>
+	<update id="listClickUpdate" parameterType="string">
+		UPDATE mk_home_video_list t2 SET t2.l_click = (SELECT t1.l_click  from (SELECT l_click+1 l_click FROM mk_home_video_list WHERE l_name=#{bd}) t1)  WHERE t2.l_name=#{bd};
+	</update>
+	<update id="videoClickUpdate" parameterType="string">
+		UPDATE mk_video t2 SET t2.v_click = (SELECT t1.v_click  from (SELECT v_click+1 v_click FROM mk_video WHERE v_url=#{url}) t1)  WHERE t2.v_url=#{url};
+	</update>
+	
+</mapper>

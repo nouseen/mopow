@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <title>梦客后台管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="moban/bootstrap2.3.2/css/bootstrap.min.css" rel="stylesheet" />
+    <title></title>
+    <link href="moban/styles/Common.css" rel="stylesheet" />
+    <link href="moban/styles/Index.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+
+        <img class="logo" src="moban/images/logo.png" />
+        <label class="logo-title">梦客VR后台管理</label>
+        <ul class="inline">
+            <li>
+                <img src="moban/images/32/client.png" />&nbsp;&nbsp;欢迎您,<span class="username"></span>
+            </li>
+           <!--  <li class="dropdown">
+                <a class="dropdown-toggle mymsg" data-toggle="dropdown" href="#"><img src="moban/images/32/166.png" />&nbsp;&nbsp;修改个人信息<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">修改密码</a></li>
+                </ul>
+
+            </li> -->
+            <li>
+                <img src="moban/images/32/200.png" />&nbsp;&nbsp;<a class="loginout" href="javascript:;" onclick="loginout();">退出</a>
+            </li>
+
+        </ul>
+
+
+    </div>
+
+
+    <div class="nav">
+
+        <ul class="breadcrumb">
+            <li>
+            <a href="#">
+                <img src="moban/images/32/5025_networking.png" />
+        	        首页
+        	 </a>
+            </li>
+            <li class="active">新闻列表</li>
+        </ul>
+    </div>
+
+
+
+    <div class="container-fluid content">
+        <div class="row-fluid">
+            <div class="col-md-2 content-left">
+                <div class="accordion">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                <img class="left-icon" src="moban/images/32/5006_feed.png" /><span class="left-title">新闻管理</span>
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+	                            <div class="accordion-inner">
+                            		<a href="newnews.html" target="rightFrame" style="display:block;">
+	                                <img class="left-icon-child" src="moban/images/32/307.png" /><span class="left-body">新闻发布</span>
+                           			</a>
+	                            </div>
+                            <div class="accordion-inner">
+                              <a href="listnews.html" target="rightFrame" style="display:block;">
+                               	   <img class="left-icon-child" src="moban/images/32/295.png" /><span class="left-body">新闻列表</span>
+                               </a>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                <img class="left-icon" src="moban/images/32/310.png" /><span class="left-title">图片管理</span>
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                            	<!-- <a  href="javascript:;" onclick="document.getElementById('rightFrame').src='newnews.html'" -->
+								 <a href="upload.jsp" target="rightFrame" style="display:block;">                            
+                                <img class="left-icon-child" src="moban/images/32/178.png" /><span class="left-body">上传图片</span>
+                                </a>
+                            </div>
+                            <div class="accordion-inner">
+                                <a href="picture.html" target="rightFrame" style="display:block;">    
+                               	 <img class="left-icon-child" src="moban/images/32/312.png" /><span class="left-body">图片列表</span>
+                                </a>
+                            </div>
+                            <div class="accordion-inner">
+                                <a href="delpicture.html" target="rightFrame" style="display:block;">    
+                               	 <img class="left-icon-child" src="moban/images/32/541.png" /><span class="left-body">图片回收站</span>
+                                </a>
+                            </div>
+                          
+                        </div>
+                    </div>
+                     <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                                <img class="left-icon" src="moban/images/32/266.png" /><span class="left-title">视频管理</span>
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              <a href="video_record.html" target="rightFrame" style="display:block;">   
+                                <img class="left-icon-child" src="moban/images/32/207.png" /><span class="left-body">视频发布</span>
+                              </a>
+                            </div>
+                            <div class="accordion-inner">
+                            	 <a href="video_list.jsp" target="rightFrame" style="display:block;">  
+                              	  <img class="left-icon-child" src="moban/images/32/267.png" /><span class="left-body">视频列表</span>
+                          		</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapsefour">
+                                <img class="left-icon" src="moban/images/32/590.png" /><span class="left-title">点击管理</span>
+                            </a>
+                        </div>
+                        <div id="collapsefour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                              <a href="click.html" target="rightFrame" style="display:block;">   
+                                <img class="left-icon-child" src="moban/images/32/591.png" /><span class="left-body">点击量管理</span>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-10 content-right">
+                 <iframe src="listnews.html" class="iframe" name="rightFrame"  id="rightFrame" title="rightFrame"></iframe>  
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="foot"></div>
+    <script src="moban/scripts/jquery-1.9.1.min.js"></script>
+    <script src="moban/bootstrap2.3.2/js/bootstrap.min.js"></script>
+    <script src="moban/scripts/Index.js"></script>
+
+</body>
+</html>

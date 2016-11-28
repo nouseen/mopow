@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon"/>
+<title>点击量管理</title>
+<meta charset="utf-8">
+ <link href="moban/bootstrap2.3.2/css/bootstrap.min.css"  rel="stylesheet" />
+<style type="text/css">
+	body{
+		text-align: center;
+		margin: 0 auto;
+		padding-top: 50px;
+	}
+	body>div{
+		margin: 0 auto;
+		width:500px;
+		text-align: center;
+		padding-top: 20px;
+	}
+	ul{
+		list-style: none;
+	} 
+	
+	.biaodan{
+		margin-bottom:40px;
+	}
+	
+	@media (min-width: 1200px){
+		.container {
+	   	 max-width: 1300px;
+		}
+	}
+	 table{
+   	width:100%;
+   }
+    table thead{
+	background-image: url(moban/images/left-title-bg-h.png);
+   }
+   
+  table td,table th{
+    text-align:center;
+   }
+</style>
+</head>
+<body>
+	<!-- 名字：<input id="name" type="text">
+	描述：<input id="description" type="text">
+	<select id="type">
+		<option id="page">1.页面</option>
+		<option id="video">2.视频</option>
+	</select><br>
+	<button id="commit">提交</button> -->
+<!-- 	<div>
+	<table id="click" border="1">
+		<tr>
+			<td>名称</td>
+			<td>ID</td>
+			<td>类别</td>
+			<td>点击量</td>
+			<td>描述</td>
+		</tr>
+	</table>
+	</div> -->
+	
+	<section id="center" class="container">
+		<div class="row biaodan">
+			<form class="form-horizontal">
+				 <div class="col-xs-1"><label class="control-label">名字：</label></div>							 	
+				 <div class="col-xs-3"><input id="name"  class="form-control" type="text"></div>							 	
+				 <div class="col-xs-1"><label class="control-label">描述：</label></div>							 	
+				 <div class="col-xs-3"><input id="description" class="form-control" type="text"></div>							 	
+				 <div class="col-xs-2">
+				 					<select id="type" class="form-control">
+										<option id="page">1.页面</option>
+										<option id="video">2.视频</option>
+									</select>
+				</div>							 	
+				 <div class="col-xs-2"><button id="commit"  class="btn btn-success">提交</button></div>							 	
+			</form> 	
+		</div>
+		<div class="row">
+				<div id="neews">
+					
+					<table class="table table-condensed table-bordered table-hover tab">
+						<thead>
+						   <tr>
+						   	  <th>ID</th>
+						   	  <th>名称</th>
+						   	  <th>类别</th>
+						   	  <th>点击量</th>
+						   	  <th>描述</th>
+						   </tr>
+						</thead>
+					   <tbody id="click" >
+					   		
+					   </tbody>
+					</table>
+				
+				</div>
+		</div>
+	</section>
+</body>
+<script type="text/javascript" src="moban/scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#commit").click(function(){
+			var name=$("#name").val();
+			var description=$("#description").val();
+			var type=$("#type").val().charAt(0);
+			
+			$.ajax({
+				url:"newclick.do",
+				type:"post",
+				dataType:"json",
+				data:{"name":name,"description":description,"type":type},
+				success:function(result){
+					if(result.status){
+					alert("提交成功！");
+					location.reload([true]);
+					}
+				}
+			});
+		
+		});
+			$.ajax({
+				url:"allclick.do",
+				dataType:"json",
+				success:function(result){
+					if(result.status){
+						var clicklist = result.data;
+						 for(var i=0;i<clicklist.length;i++){ 
+							var  theclick = clicklist[i];
+						 	 var name=theclick.c_name; 
+						 	var id=theclick.c_id;
+						 	var type=theclick.c_type;
+						 	var  description = theclick.c_description;
+						 	var  number = theclick.c_number;
+						 	var tr='<tr>'+
+										'<td>'+id+'</td>'+
+										'<td>'+name+'</td>'+
+										'<td>'+type+'</td>'+
+										'<td>'+number+'</td>'+
+										'<td>'+description+'</td>'+
+									'</tr>';
+							$("#click").append(tr); 
+						 }
+					}
+				}
+			});
+	
+	
+	});
+	
+</script>
+</html>

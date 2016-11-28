@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+<meta name="author" content="zoom-arts">
+<title>公司动态</title>
+ <link href="moban/bootstrap2.3.2/css/bootstrap.min.css" rel="stylesheet" />
+ 
+<style type="text/css">
+	@media (min-width: 1200px){
+	.container {
+	    max-width: 1300px;
+	}
+}
+	ul li {
+	list-style:none;
+	display:inline-block;
+	width:100%;
+	border-bottom:1px solid;
+   }
+   .news_title .title{
+   	float:left;
+   }
+    .news_title .times{
+   	float:right;
+   }
+   p{
+   		margin:0;
+   }
+  table{
+   	width:100%;
+   }
+    table thead{
+	background-image: url(moban/images/left-title-bg-h.png);
+   }
+   
+  table td,table th{
+    text-align:center;
+   }
+</style>
+
+</head>
+<body>
+	
+	<!-- 中间 -->
+	<section id="center" class="container">
+		<div class="row-fluid">
+			<h2>新闻列表</h2>
+			<div id="left">
+				<div id="neews">
+					
+					<table class="table table-condensed table-bordered table-hover tab">
+						<thead>
+						   <tr>
+						   	  <th>标题</th>
+						   	  <th>发布时间</th>
+						   	  <th>推荐</th>
+						   	  <th>编辑</th>
+						   </tr>
+						</thead>
+					   <tbody class="newslist">
+					   		
+					   </tbody>
+					</table>
+				
+				</div>
+			</div>
+			<!-- 页码DIV -->
+				<nav style="text-align:center;">
+				  <ul class="pagination pages">
+				   
+				  </ul>
+				</nav>
+			
+		</div>
+	</section>
+	
+</body>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/n.loadnews.js"></script>
+
+<script type="text/javascript">
+
+		$(function(){
+			
+			load_admin_news_list(1);
+			$.ajax({
+    			url:"../news/pagenews.do",
+    			type:"post",
+    			data:{
+    				"page":1, 
+    			},
+    			dataType:"json",
+    			success:function(result){
+    				if(result.status==1){
+    					$(".pages").append(result.data);
+    					return false;
+    				}else{
+    					alert("系统繁忙！")
+    				}
+    			}
+    		});	
+			
+		});
+			
+			function	deleNew(id){
+				 var page=$("ul.pages li.active a").text();
+				  if(confirm("确定删除么?")){
+					   $.ajax({
+				          url:"delenews.do",
+				          type:"post",
+				          data:{"id":id},
+				          dataType:"json",
+				          success:function(result){
+				         		 if(result.status){
+				         			jumpPage(page);
+			    					return false;
+				         		}
+							}
+						});  
+				  }
+				} 
+		
+			  function jumpPage(page){
+					$(".newsss").remove();
+					$(".pages li").remove();
+					load_admin_news_list(page);
+					
+				$.ajax({
+	    			url:"../news/pagenews.do",
+	    			type:"post",
+	    			data:{
+	    				"page":page,
+	    			},
+	    			dataType:"json",
+	    			success:function(result){
+	    				if(result.status==1){
+	    					$(".pages").append(result.data);
+	    					return false;
+	    				}else{
+	    					alert("系统繁忙！")
+	    				}
+	    			}
+	    		});	
+			};
+			
+		 function	qxtj(qx,id){
+			 
+			var page=$("ul.pages li.active a").text();
+			 
+			  $.ajax({
+	    			url:"recommendremove.do",
+	    			type:"post",
+	    			data:{
+	    				"id":id,
+	    			},
+	    			dataType:"json",
+	    			success:function(result){
+	    				if(result.status){
+	    					jumpPage(page);
+	    					return false;
+	    				}else{
+	    					alert("系统繁忙！")
+	    				}
+	    			}
+	    		});	 
+		 };
+		
+			
+		 function	swtj(sw,id){
+			 var page=$("ul.pages li.active a").text();
+				$.ajax({
+	    			url:"setrecommend.do",
+	    			type:"post",
+	    			data:{ 
+	    				"id":id,
+	    			},
+	    			dataType:"json",
+	    			success:function(result){
+	    				if(result.status){
+	    					jumpPage(page);
+	    					return false;
+	    				}else{
+	    					alert("系统繁忙！")
+	    				}
+	    			}
+	    		});	
+		 };
+			
+</script>
+
+</html>

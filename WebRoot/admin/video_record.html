@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>视频发布</title>
+ <link href="moban/bootstrap2.3.2/css/bootstrap.css" rel="stylesheet" />
+ <link href="moban/bootstrap2.3.2/css/bootstrapValidator.css" rel="stylesheet" />
+<style type="text/css">
+	.container{
+		padding:0;
+	}
+</style>	
+
+</head>
+  
+  <body>
+  	<div class="container" id="content">
+  		  <h2>视频发布</h2>
+  		<form id="defaultForm" method="post" role="form" action="newvideo.do" class="form-horizontal">
+	   		  <div class="form-group">
+				    <label for="url" class="col-sm-2 control-label">影片地址：</label>
+				     <div class="col-sm-10">
+				  		  <input type="text" id="v_url" class="form-control" name="url"  placeholder="请输入影片地址">
+				   </div>
+			  </div>
+	   		  <div class="form-group">
+				    <label for="pic" class="col-sm-2 control-label">展图地址：</label>
+				      <div class="col-sm-10">
+				    <input type="text" id="v_pic" class="form-control" name="pic" placeholder="请输入展图地址">
+				   </div>
+			  </div>
+	   		  <div class="form-group">
+				    <label for="name" class="col-sm-2 control-label">影片名称：</label>
+				      <div class="col-sm-10">
+				  	  <input type="text" id="v_name" class="form-control" name="name" placeholder="请输入影片名称">
+			 		</div>
+			  </div>
+			  
+	   		 <div class="form-group">
+				    <label for="introduce" class="col-sm-2 control-label">简介：</label>
+				      <div class="col-sm-10">
+				    <textarea  id="v_introduce" name="introduce" class="form-control" placeholder="请输入影片简介"></textarea>
+			 		</div>
+			  </div>
+	   		 <div class="form-group">
+				    <label for="author" class="col-sm-2 control-label">作者：</label>
+				      <div class="col-sm-10">
+				    <input type="text" id="v_author" class="form-control" name="author"  placeholder="请输入作者">
+					</div>
+			  </div>
+	   		 <div class="form-group">
+				    <label for="episode" class="col-sm-2 control-label">剧集：</label>
+	   	 	   <div class="col-sm-10">
+				    <input type="text" id="v_episode" class="form-control" name="episode" placeholder="请输入剧集">
+				</div>
+			  </div>
+			  
+	   		<div class="form-group">
+	   		   
+				    <label for="v_bd" class="col-sm-2 control-label">影片播单：</label>
+				  <!--   <select id="bd" class="form-control">
+	   					<option>请选择</option>
+	   					<option>轻春梦工厂</option>
+	   					<option>觅桃成熟式</option>
+	   					<option>梦客</option>
+	   					<option>太极</option>
+	   					<option>自定义</option>
+	   				  </select> -->
+	   				  <div class="col-sm-10">
+	   				   <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_bd" class="hahaby" name="bd" value="轻春梦工厂" />轻春梦工厂
+                             </label>
+                         </div>
+                         <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_bd" class="hahaby" name="bd" value="觅桃成熟式" />觅桃成熟式
+                             </label>
+                         </div>
+                         <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_bd" class="hahaby" name="bd" value="梦客" />梦客
+                             </label>
+                         </div>
+                         <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_bd" class="hahaby" name="bd" value="太极" />太极
+                             </label>
+                         </div>
+                          <div class="radio">
+                             <label>
+                                 <input type="radio" class="zdyby" name="bd"  value="0"/>自定义
+                             </label>
+                         </div>
+	   				  
+			  	 	 <input type="text" class="form-control zdyby1" id="v_bd" name="zdybd" placeholder="" style="display:none;"> 
+			  	 	 </div>
+			  </div>
+	   			  
+	   			
+	   			<div class="form-group">
+				    <label for="v_list" class="col-sm-2 control-label">影片列表：</label>
+				         <div class="col-sm-10">
+		   				<div class="radio">
+                             <label>
+                                 <input type="radio" id="v_list" name="list" value="小师妹" />小师妹
+                             </label>
+                         </div>
+		   				<div class="radio">
+                             <label>
+                                 <input type="radio" id="v_list" name="list" value="御姐" />御姐
+                             </label>
+                         </div>
+		   				<div class="radio">
+                             <label>
+                                 <input type="radio" id="v_list" name="list" value="COS" />COS
+                             </label>
+                         </div>
+		   				<div class="radio">
+                             <label>
+                                 <input type="radio" id="v_list" name="list" value="小护士" />小护士
+                             </label>
+                         </div>
+                         </div>
+			  	 	<!-- <input type="text" id="v_list"> -->
+			  </div>
+	   			
+	   			 <div class="form-group">
+				    <label for="v_type" class="col-sm-2 control-label">影片类型：</label>
+				      <div class="col-sm-10">
+	   				      <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_type" name="v_type" value="1" />系列片
+                             </label>
+                         </div>
+	   				      <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_type" name="v_type" value="2" />预告片
+                             </label>
+                         </div>
+	   				      <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_type" name="v_type" value="3" />花絮
+                             </label>
+                         </div>
+	   				      <div class="radio">
+                             <label>
+                                 <input type="radio" id="v_type" name="v_type" value="4" />首页2片(仅支持腾迅视频)
+                             </label>
+                         </div>
+			  	 	<!-- <input type="text" id="v_list"> -->
+			  	 	</div>
+				  </div>
+				   <div class="form-group">
+				   		 <div class="col-sm-offset-2 col-sm-10">
+				   			   <button type="submit" id="commit" class="btn btn-primary btn-lg">保存</button>
+				      </div>
+				  </div>
+				  
+	   		   </form>
+	   		   
+	   		</div>
+	
+  </body>
+  <script type="text/javascript" src="moban/scripts/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="moban/scripts/jquery.form.js"></script>
+  <script type="text/javascript" src="moban/bootstrap2.3.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="moban/bootstrap2.3.2/js/bootstrapValidator.js"></script>
+  <script type="text/javascript">
+ 	$(function(){ 
+		$(".hahaby").click(function(){
+			$(".zdyby1").val("");
+			$(".zdyby1").hide();
+		});
+		$(".zdyby").click(function(){
+			$(".zdyby1").show();
+		});
+		
+		/*  $("#commit").click(function(){
+			var url=$("#v_url").val();
+			var pic=$("#v_pic").val();
+			var name=$("#v_name").val();
+			var content=$("#v_type").val();
+			var author=$("#v_author").val();
+			var list=$("#v_list").val();
+			var introduce=$("#v_introduce").val();
+			var episode=parseInt($("#v_episode").val());
+			var bd=$("#v_bd").val();
+			var type=$("#v_type").val();
+			
+			 $.ajax({
+				url:"../video/newvideo.do",
+				type:"post",
+				data:{"url":url,"pic":pic,"name":name,"type":type,"author":author,"list":list,"introduce":introduce,"episode":episode,"bd":bd},
+				dataType:"json",
+				success:function(result){
+					if(result.status){
+						alert(result.msg);
+						document.location.href="../admin/video_list.html";
+					}else{
+						alert("系统繁忙！");
+					}
+				
+				}
+			
+			}); 
+		}); */
+		}); 
+		
+	
+		 $('#defaultForm').bootstrapValidator({
+	        message: 'This value is not valid',
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	        	url: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '影片地址不能为空'
+	                    }
+	                }
+	            },
+	            pic: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '展图地址不能为空'
+	                    }
+	                }
+	            },
+	        	url: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '影片地址不能为空'
+	                    }
+	                }
+	            },
+	            name: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '影片名称不能为空'
+	                    }
+	                }
+	            },
+	            introduce: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '简介不能为空'
+	                    }
+	                }
+	            },
+	            author: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '作者不能为空'
+	                    }
+	                }
+	            },
+	            episode: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '剧集不能为空'
+	                    }
+	                }
+	            },
+	            bd: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '请选择播单'
+	                    }
+	                }
+	            },
+	            list: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '请选择影片'
+	                    }
+	                }
+	            },
+	            v_type: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '请选择影片类型'
+	                    }
+	                }
+	            }
+	        }
+	    });
+		 
+		
+</script>  
+</html>

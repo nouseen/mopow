@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.mopow.dao.NewsDao">
+ 
+ 
+ 
+ <select id="countNews"  parameterType="INTEGER"
+		resultType="INTEGER">
+	SELECT count(1) FROM mk_news 
+</select>
+
+ <select id="findById"  parameterType="string"
+		resultType="cn.mopow.entity.News">
+	SELECT n_id,n_title,n_body,n_createtime,n_abstract FROM mk_news WHERE n_id=#{id}
+</select>
+<select id="findAllNews"   parameterType="hashmap" resultType="hashmap">
+	SELECT n_id,n_title,n_createtime,n_body,n_img,n_type,n_recommend FROM mk_news  ORDER BY n_createtime DESC LIMIT  #{start},#{end}
+</select>
+<select id="findHomeNews" resultType="hashmap">
+	SELECT n_view,n_id,n_title,n_createtime,n_img,n_type FROM mk_news  ORDER BY n_createtime DESC LIMIT  0,16
+</select>
+<select id="findRecommendNews" parameterType="int" resultType="hashmap">
+	SELECT n_id,n_title,n_createtime,n_body,n_img,n_type FROM mk_news WHERE n_recommend="1" ORDER BY n_createtime DESC LIMIT  #{start},10;
+</select>
+<select id="findPreNews" parameterType="string" resultType="hashmap">
+	SELECT n_id,n_title FROM mk_news WHERE n_createtime&gt;#{n_createtime} ORDER BY n_createtime  LIMIT 1;
+</select>
+<select id="findNextNews" parameterType="string" resultType="hashmap">
+	SELECT n_id,n_title FROM mk_news WHERE n_createtime&lt;#{n_createtime} ORDER BY n_createtime DESC LIMIT 1;
+</select>
+<select id="findHotNews" resultType="hashmap">
+	SELECT n_title,n_id,n_createtime FROM mk_news ORDER BY n_click DESC LIMIT 5;
+</select>
+<insert id="createNews" parameterType="cn.mopow.entity.News">
+	INSERT INTO mk_news(n_id,n_title,n_body,n_createtime,n_type,n_view,n_img,n_abstract)
+	VALUES(
+	#{n_id},#{n_title},#{n_body},now(),#{n_type},#{n_view},#{n_img},#{n_abstract}
+	)
+</insert>
+<update id="editNews"  parameterType="cn.mopow.entity.News">
+	UPDATE mk_news SET n_body=#{n_body},n_view=#{n_view},n_img=#{n_img},n_title=#{n_title},n_abstract=#{n_abstract}, n_createtime=#{n_createtime} WHERE n_id=#{n_id}
+</update>
+<insert id="createNewsHome"  parameterType="cn.mopow.entity.HomeNews">
+	INSERT INTO mk_news_home(n_id,n_home)
+	VALUES(
+	#{n_id},#{n_home}
+	)
+</insert>
+<delete id="deleNewsHome"  parameterType="string">
+	DELETE FROM mk_news_home WHERE n_num=(SELECT 
+	MIN(n_num) FROM (SELECT n_num
+ FROM mk_news_home WHERE n_home=#{n_home}) t1);
+</delete>
+<delete id="deleNews"  parameterType="string">
+	DELETE FROM mk_news WHERE n_id=#{n_id};
+</delete>
+<update id="setRecommend" parameterType="string">
+	UPDATE mk_news SET n_recommend=1  WHERE n_id=#{n_id};
+</update>
+<update id="removeRecommend" parameterType="string">
+	UPDATE mk_news SET n_recommend=0  WHERE n_id=#{n_id};
+</update>
+<update id="updateClick" parameterType="string">
+	UPDATE mk_news SET n_click=(SELECT t1.n_click+1 FROM (SELECT n_click FROM mk_news WHERE n_id=#{n_id}) t1 ) WHERE n_id=#{n_id}
+</update>
+</mapper>

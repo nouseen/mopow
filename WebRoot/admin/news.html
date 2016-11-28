@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+<meta name="author" content="zoom-arts">
+<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../js/n.loadnews.js"></script>
+<script type="text/javascript" src="../js/topfoot.js"></script>
+<link rel="stylesheet" href="../css/headfoot.css">
+<link rel="stylesheet" href="../css/n.newscenter.css"> 
+<style type="text/css">
+#neeeees_title{ 
+line-height:40px;
+text-align: center; 
+padding:25px 0px; 
+} 
+#neeeeees{ 
+text-indent: 2em;  
+line-height: 24px;
+padding-bottom: 40px; 
+}
+#neeeees_title p{ 
+color: #000;   
+}
+#neeeeees p{
+color:#333; 
+}
+#neeeeees img{
+padding-top: 10px;  
+}
+</style>
+<script type="text/javascript">
+	$(function(){
+		load_recommend_news();
+			load_hot_news();
+		var str=location.href;
+		  var start;
+		  var end; 
+		  var i=0; 
+		 while( str.charAt(i)!="-"){
+		 	 i++;
+		  };
+		 start=i+1;
+		 while( str.charAt(i)!="."){
+		 	 i++;
+		  };
+		  end=i;
+		  var newsId=str.substr(start,end-start);
+		 $.ajax({
+	          url:"news/showthenews.do",
+	          type:"post",
+	          data:{"id":newsId},
+	          dataType:"json",
+	          success:function(result){
+	         		 if(result.status){
+						var news=result.data;
+						var title=news.n_title;
+						var abstr=news.n_abstract;
+						var body=news.n_body;
+						var time=news.n_createtime;
+			            document.title=title;
+			            $("#neeeees_title>p").html(title);  
+						$("#neeeeees>p").html(body);
+					}
+				}
+			});
+	});
+
+</script>
+</head> 
+<body>
+	<!-- 菜单栏 -->
+		<section id="menu" class="body">
+		<div class="center" >
+				<a href="home.html"><img src="../img/mengke.png"></a>
+				<div id="href"> 
+					<a href="home.html"><img src="../img/menu/11.png" ></a>
+					<a href="case.html"><img src="../img/menu/22.png"></a>
+					<a href="show.html"><img src="../img/menu/33.png" ></a>
+					<a href="newscenter.html"><img src="../img/menu/4.png" class="active"></a>
+					<a href="about.html"><img src="../img/menu/55.png"></a>
+				</div>
+		</div>
+	</section> 
+	
+	<!-- 中间 -->
+	<section id="center" class="body">
+		<div class="center">
+			<div id="left">
+				<div id="new_head">
+					<p class="t24"><a href="newscenter.html">公司动态</a>>正文</p>
+				</div>
+				<div id="neews">
+					<div id="neeeees_title">
+						<p class="t24"></p>
+					</div>
+					<div id="neeeeees">
+						<p class="t14"></p>
+					</div>
+				</div> 
+			</div>
+			<div id="right_up">
+				<div id="up_head">
+					<p class="t24"><img src="../img/dynamic/newscommend.png"></p>
+				</div>
+				<div id="recommend">
+					<ul id="recommend_newssssss">
+					</ul>
+				</div> 
+			</div>
+			<div id="right_bottom"> 
+				<div id="up_head">
+					<p class="t24"><img src="../img/dynamic/newshot.png"></p>
+				</div>
+				<div id="hot">
+					<ul id="hottttt">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 底部 -->
+	<section id="footttt">
+		<div class="center">
+			<div id="tt2">
+					<p class="t18">友情链接</p>
+				<p class="t14 ttaaff">
+					<a href="http://www.jiayusky.com">嘉钰传媒 </a>
+				</p>
+				<p class="t14 ttaaff">
+					<a href="http://vr.youku.com">优酷VR</a>
+				</p>
+				<p class="t14 ttaaff"> 
+					<a href="http://vr.letv.com/">乐视VR</a>
+				</p>
+				<p class="t14 ttaaff">
+					<a href="http://www.mojing.cn/">暴风魔镜</a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.antvr.com/">ANTVR</a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.deepoon.com">乐相科技</a>
+				</p>
+				<p class="t14 ttaaff">
+					<a href="http://www.inibiru.com/">Nibiru </a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.87870.com/">87870</a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.vrwanjia.cn">VR玩家</a>
+				</p>
+				<p class="t14 ttaaff">
+					<a href="http://www.chengzivr.com">橙子VR </a></p>
+				<p class="t14 ttaaff">
+					<a href="http://vrga.xiaoyingvr.com/">VRGA</a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.chinavr2016.org/">chinaVR</a>
+				</p>
+				<p class="t14 ttaaff">
+					<a href="http://www.utovr.com/">utovr</a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.vrcun.com/">VR村</a></p>
+				<p class="t14 ttaaff">
+					<a href="http://www.vrtoutiao.com/">VR头条</a>
+				</p> 
+			</div>
+			<div id="tt3">
+				<p class="t18">联系我们</p>
+				<p class="t14">网址：www.mengkevr.com</p>
+				<p class="t14">邮箱：mengke360@163.com</p>
+				<p class="t14">QQ:3174786219</p>
+				<p class="t14">电话：+86+023-6815-9339</p>
+				<p class="t14">公司地址：中国重庆市九龙坡区石桥铺<br><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科园三路南方星空大厦17-6</span></p>
+				<p class="t14">邮编：410000</p>
+				
+			</div>
+			<div id="tt4"> 
+				<p class="t18">  
+					关注梦客二维码
+				</p> 
+				<div id="wechat">
+					<p><img src="../img/wechat.png"><p>
+					<p class="t14">微信</p>
+				</div>
+				<div id="weibo">
+					<img src="../img/weibo.png">
+					<p class="t14">微博</p>
+				</div>
+			</div>
+		</div>	
+		<div id="copyright"><p>Copyright © mengke360.com All Rights Reserved | 京ICP备16034897号-2</p>
+		</div>
+	</section>
+</body>
+</html>
