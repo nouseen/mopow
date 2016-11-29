@@ -125,7 +125,7 @@ public class PicturServiceImpl implements PictureService{
 					 n=m-pageSize;
 				 }else {
 					 n=m-(m % pageSize);
-				}
+				} 
 			}
 			result.setData(pictureDao.findAllPic(n,pageSize,isdel));
 			result.setMsg("加载成功！");

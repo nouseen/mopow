@@ -16,8 +16,8 @@ public class CreateArticleController {
 	private ArticleService service;
 	@RequestMapping("/createnews.do")
 	@ResponseBody
-	public MpResult execute(String title,String body,String abstr){
-		MpResult result = service.createArticle(title, body, abstr);
+	public MpResult execute(String title,String body,String abstr,String img,String type){
+		MpResult result = service.createArticle(title, body, abstr,img,type);
 		return result;
 	}
 }

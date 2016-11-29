@@ -56,7 +56,7 @@
 						   <tr>
 						   	  <th>标题</th>
 						   	  <th>发布时间</th>
-						   	  <th>推荐</th>
+						   	  <th>文章位置</th>
 						   	  <th>编辑</th>
 						   </tr>
 						</thead>
@@ -82,15 +82,15 @@
 <script type="text/javascript" src="../js/n.loadnews.js"></script>
 
 <script type="text/javascript">
-
+ 
 		$(function(){
 			
-			load_admin_news_list(1);
+			load_admin_news_list(1); 
 			$.ajax({
     			url:"../news/pagenews.do",
     			type:"post",
     			data:{
-    				"page":1, 
+    				"page":1,  
     			},
     			dataType:"json",
     			success:function(result){

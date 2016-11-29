@@ -31,9 +31,9 @@ public class PicUpController {
 	@RequestMapping("/huanyuanpic.do")
 	@ResponseBody
 	public void huanyuanPic(String id){
-		service.huanyuanPic(id);
+		service.huanyuanPic(id); 
 	}
-		
+		 
 	}
 
 

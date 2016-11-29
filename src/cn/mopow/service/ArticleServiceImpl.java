@@ -120,17 +120,17 @@ public class ArticleServiceImpl implements ArticleService{
 	
 	
 	
-	public MpResult createArticle(String title, String body,String abstr) {
+	public MpResult createArticle(String title, String body,String abstr,String img,String type) {
 		MpResult result=new MpResult();
-		Article Article = new Article();
-		
-		Article.setN_id(MpUtil.createPicId());
-		Article.setN_title(title);
-		Article.setN_body(body);
-		Article.setN_abstract(abstr);
-		ArticleDao.createArticle(Article);
-		ArticleDao.deleArticleHome(Article.getN_position());
-		result.setMsg("新闻添加成功！");
+		Article article = new Article();
+		article.setN_id(MpUtil.createPicId());
+		article.setN_title(title);
+		article.setN_body(body);
+		article.setN_abstract(abstr);
+		article.setN_position(type);
+		article.setN_img(img); 
+		ArticleDao.createArticle(article);
+		result.setMsg("新闻添加成功！"); 
 		result.setStatus(1); 
 		return result;
 	}
@@ -233,7 +233,7 @@ public class ArticleServiceImpl implements ArticleService{
 		return result;
 	}
 	@Override
-	public MpResult editArticle(String id,String title, String body, String abstr,String time){
+	public MpResult editArticle(String id,String title, String body, String abstr,String time,String type,String img){
 		// TODO Auto-generated method stub
 		MpResult result=new MpResult();
 		Article Article = new Article();
@@ -254,6 +254,8 @@ public class ArticleServiceImpl implements ArticleService{
 		Article.setN_title(title);
 		Article.setN_body(body);
 		Article.setN_abstract(abstr);
+		Article.setN_img(img);
+		Article.setN_position(type);
 		ArticleDao.editArticle(Article);
 		result.setMsg("更新成功！");
 		result.setStatus(1);

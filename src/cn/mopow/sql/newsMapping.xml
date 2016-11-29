@@ -12,8 +12,8 @@
 
  <select id="findById"  parameterType="string"
 		resultType="cn.mopow.entity.Article">
-	SELECT n_id,n_title,n_body,n_createtime,n_abstract FROM mp_Article WHERE n_id=#{id}
-</select>
+	SELECT n_id,n_title,n_body,n_createtime,n_abstract,n_position,n_img FROM mp_Article WHERE n_id=#{id}
+</select> 
 <select id="findAllArticle"   parameterType="hashmap" resultType="hashmap">
 	SELECT n_id,n_title,n_createtime,n_body,n_img,n_position,n_recommend FROM mp_Article  ORDER BY n_createtime DESC LIMIT  #{start},#{end}
 </select>

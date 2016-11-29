@@ -15,9 +15,9 @@ public class EditArticleController {
 	private ArticleService service;
 	@RequestMapping("/modifythenews.do")
 	@ResponseBody
-	public MpResult execute(String id,String title,String body,String abstr,String time){
+	public MpResult execute(String id,String title,String body,String abstr,String time,String type,String img){
 		MpResult result;
-			result = service.editArticle(id, title, body, abstr,time);
+			result = service.editArticle(id, title, body, abstr,time,type,img);
 		return result;
 	}
 }

@@ -3,12 +3,12 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <mapper namespace="cn.mopow.dao.PictureDao">
  <insert id="createPicture" parameterType="cn.mopow.entity.Picture">
- 	INSERT INTO mk_pic(p_id,p_name,p_localsite,p_url,p_createtime)  VALUES(
+ 	INSERT INTO mp_pic(p_id,p_name,p_localsite,p_url,p_createtime)  VALUES(
  	#{p_id},#{p_name},#{p_localSite},#{p_url},now()
  	)
  </insert>
  <select id="findAllPic" resultType="hashmap">
- 	SELECT p_id,p_name,p_url FROM mk_pic   	
+ 	SELECT p_id,p_name,p_url FROM mp_pic   	
  		  <if test="isdel == 0">
                  WHERE p_isdel=0
            </if>
@@ -19,7 +19,7 @@
  </select>
  
   <select id="conutPic" resultType="INTEGER">
- 	SELECT count(1) FROM mk_pic   	
+ 	SELECT count(1) FROM mp_pic   	
  		  <if test="isdel == 0">
                  WHERE p_isdel=0
            </if>
@@ -29,11 +29,11 @@
  </select>
  
  <delete id="deletePic"  parameterType="String">
-      delete from mk_pic  WHERE p_id=#{id};
+      delete from mp_pic  WHERE p_id=#{id};
  </delete>
   
   <update id="huanyuanPic" parameterType="String">
- 	UPDATE mk_pic  SET  p_isdel=0 WHERE p_id=#{id};
+ 	UPDATE mp_pic  SET  p_isdel=0 WHERE p_id=#{id};
  </update>
  
 </mapper>

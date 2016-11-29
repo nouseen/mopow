@@ -56,8 +56,10 @@ input[type="button"]{
 		$("#hand").click(function() {
 			var title = $("#articleTitle").val().trim();
 			var abstr = $("#abstr").val().trim();
+			var img=$("#n_img").val().trim();
+			var type = document.getElementById("type").value; 
 			var body = CKEDITOR.instances.body.getData();
-			if(body.lenght<500||title<5||abstr<10){
+			if(body.lenght<100||title<5){
 				alert("太少了，再写点吧－ －")
 				return;
 			}
@@ -67,8 +69,10 @@ input[type="button"]{
 				data : {
 					"title" : title,
 					"body" : body,
-					"abstr":abstr
-				},
+					"abstr":abstr,
+					"type":type,
+					"img":img
+				}, 
 				dataType : "json",
 				success : function(result) {
 					if(result.status==1){
@@ -93,11 +97,26 @@ input[type="button"]{
 				    <label for="articleTitle">标题:</label>
 				    <input type="email" class="form-control" id="articleTitle"  name="blog_title" placeholder="请输入新闻标题">
 			    </div>
-				
 				<div class="form-group">
-				    <label for="abstr">摘要:</label>
-				   <textarea id="abstr" style="overflow:auto" placeholder="请输入摘要"></textarea>
+				    <label for="articleTitle">展示图片:</label>
+				    <input type="email" class="form-control" id="n_img"  name="blog_title" placeholder="请输入要展示的图片的地址">
+				    
 			    </div>
+			    <div class="form-group">
+			    	<label for="type">文章位置:</label>
+				     <select id="type" class="form-control">
+	   					<option>请选择文章位置</option>
+	   					<option value="1">轻春梦工厂</option>
+	   					<option value="2">觅桃成熟式</option>
+	   					<option value="3">梦客</option>
+	   					<option value="4">太极</option>
+	   					<option value="5">自定义</option> 
+	   				  </select>
+			  </div> 
+				<div class="form-group">
+				    <label for="abstr">展示文字:</label>
+				   <textarea id="abstr" style="overflow:auto" placeholder="请输入要展示的文字"></textarea>
+			    </div> 
 				
 				<div class="form-group">
 				    <label for="edit">内容:</label>
@@ -106,7 +125,7 @@ input[type="button"]{
 						<script  type="text/javascript">
 							var editor = CKEDITOR.replace('financial.bz');
 						</script>
-					</div>
+					</div> 
 			    </div>
 			 
 				 <button type="button" id="remain" class="btn  btn-primary btn-lg">保存</button>

@@ -11,8 +11,7 @@ public interface ArticleDao {
 	public List<Map<String,String>> findHomeArticle();
 	public void createArticle(Article article);
 	public void editArticle(Article article);
-	public void deleArticleHome(String n_home);
-	public void setRecommend(String n_id);
+	public void setRecommend(String n_id); 
 	public void removeRecommend(String n_id);
 	public void deleArticle(String n_id);
 	public List<Map<String,String>> findRecommendArticle(int start);
