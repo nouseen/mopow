@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
- <mapper namespace="com.mengke.dao.PictureDao">
- <insert id="createPicture" parameterType="com.mengke.entity.Picture">
+ <mapper namespace="cn.mopow.dao.PictureDao">
+ <insert id="createPicture" parameterType="cn.mopow.entity.Picture">
  	INSERT INTO mk_pic(p_id,p_name,p_localsite,p_url,p_createtime)  VALUES(
  	#{p_id},#{p_name},#{p_localSite},#{p_url},now()
  	)
@@ -24,20 +24,9 @@
                  WHERE p_isdel=0
            </if>
            <if test="isdel == 1">
-           		WHERE p_isdel=1
+           		WHERE p_isdel=1   
            </if>
  </select>
- 
- <select id="findHomePic" resultType="hashmap">
- 	SELECT p_url,p_id,p_home FROM mk_pic WHERE p_home>0 ORDER BY 	p_createtime DESC;
- 
- </select>
- <update id="setPicHome" parameterType="hashmap">
- 	UPDATE mk_pic  SET  p_home=#{home} WHERE p_id=#{id};
- </update>
-  <update id="delPicHome" parameterType="String">
- 	UPDATE mk_pic  SET  p_isdel=1 WHERE p_id=#{id};
- </update>
  
  <delete id="deletePic"  parameterType="String">
       delete from mk_pic  WHERE p_id=#{id};
