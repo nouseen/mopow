@@ -7,50 +7,50 @@
  
  <select id="countArticle"  parameterType="INTEGER"
 		resultType="INTEGER">
-	SELECT count(1) FROM mk_Article 
+	SELECT count(1) FROM mp_Article 
 </select>
 
  <select id="findById"  parameterType="string"
 		resultType="cn.mopow.entity.Article">
-	SELECT n_id,n_title,n_body,n_createtime,n_abstract FROM mk_Article WHERE n_id=#{id}
+	SELECT n_id,n_title,n_body,n_createtime,n_abstract FROM mp_Article WHERE n_id=#{id}
 </select>
 <select id="findAllArticle"   parameterType="hashmap" resultType="hashmap">
-	SELECT n_id,n_title,n_createtime,n_body,n_img,n_type,n_recommend FROM mk_Article  ORDER BY n_createtime DESC LIMIT  #{start},#{end}
+	SELECT n_id,n_title,n_createtime,n_body,n_img,n_position,n_recommend FROM mp_Article  ORDER BY n_createtime DESC LIMIT  #{start},#{end}
 </select>
 <select id="findHomeArticle" resultType="hashmap">
-	SELECT n_view,n_id,n_title,n_createtime,n_img,n_type FROM mk_Article  ORDER BY n_createtime DESC LIMIT  0,16
+	SELECT n_view,n_id,n_title,n_createtime,n_img,n_type FROM mp_Article  ORDER BY n_createtime DESC LIMIT  0,16
 </select>
 <select id="findRecommendArticle" parameterType="int" resultType="hashmap">
-	SELECT n_id,n_title,n_createtime,n_body,n_img,n_type FROM mk_Article WHERE n_recommend="1" ORDER BY n_createtime DESC LIMIT  #{start},10;
+	SELECT n_id,n_title,n_createtime,n_body,n_img,n_type FROM mp_Article WHERE n_recommend="1" ORDER BY n_createtime DESC LIMIT  #{start},10;
 </select>
 <select id="findPreArticle" parameterType="string" resultType="hashmap">
-	SELECT n_id,n_title FROM mk_Article WHERE n_createtime&gt;#{n_createtime} ORDER BY n_createtime  LIMIT 1;
+	SELECT n_id,n_title FROM mp_Article WHERE n_createtime&gt;#{n_createtime} ORDER BY n_createtime  LIMIT 1;
 </select>
 <select id="findNextArticle" parameterType="string" resultType="hashmap">
-	SELECT n_id,n_title FROM mk_Article WHERE n_createtime&lt;#{n_createtime} ORDER BY n_createtime DESC LIMIT 1;
+	SELECT n_id,n_title FROM mp_Article WHERE n_createtime&lt;#{n_createtime} ORDER BY n_createtime DESC LIMIT 1;
 </select>
 <select id="findHotArticle" resultType="hashmap">
-	SELECT n_title,n_id,n_createtime FROM mk_Article ORDER BY n_click DESC LIMIT 5;
+	SELECT n_title,n_id,n_createtime FROM mp_Article ORDER BY n_click DESC LIMIT 5;
 </select>
 <insert id="createArticle" parameterType="cn.mopow.entity.Article">
-	INSERT INTO mk_Article(n_id,n_title,n_body,n_createtime,n_type,n_view,n_img,n_abstract)
+	INSERT INTO mp_Article(n_id,n_title,n_body,n_createtime,n_position,n_view,n_img,n_abstract)
 	VALUES(
-	#{n_id},#{n_title},#{n_body},now(),#{n_type},#{n_view},#{n_img},#{n_abstract}
-	)
+		#{n_id},#{n_title},#{n_body},now(),#{n_position},#{n_view},#{n_img},#{n_abstract}
+	) 
 </insert>
 <update id="editArticle"  parameterType="cn.mopow.entity.Article">
-	UPDATE mk_Article SET n_body=#{n_body},n_view=#{n_view},n_img=#{n_img},n_title=#{n_title},n_abstract=#{n_abstract}, n_createtime=#{n_createtime} WHERE n_id=#{n_id}
+	UPDATE mp_Article SET n_body=#{n_body},n_view=#{n_view},n_img=#{n_img},n_title=#{n_title},n_abstract=#{n_abstract}, n_createtime=#{n_createtime} WHERE n_id=#{n_id}
 </update>
 <delete id="deleArticle"  parameterType="string">
-	DELETE FROM mk_Article WHERE n_id=#{n_id};
+	DELETE FROM mp_Article WHERE n_id=#{n_id};
 </delete>
 <update id="setRecommend" parameterType="string">
-	UPDATE mk_Article SET n_recommend=1  WHERE n_id=#{n_id};
+	UPDATE mp_Article SET n_recommend=1  WHERE n_id=#{n_id};
 </update>
 <update id="removeRecommend" parameterType="string">
-	UPDATE mk_Article SET n_recommend=0  WHERE n_id=#{n_id};
+	UPDATE mp_Article SET n_recommend=0  WHERE n_id=#{n_id};
 </update>
 <update id="updateClick" parameterType="string">
-	UPDATE mk_Article SET n_click=(SELECT t1.n_click+1 FROM (SELECT n_click FROM mk_Article WHERE n_id=#{n_id}) t1 ) WHERE n_id=#{n_id}
+	UPDATE mp_Article SET n_click=(SELECT t1.n_click+1 FROM (SELECT n_click FROM mp_Article WHERE n_id=#{n_id}) t1 ) WHERE n_id=#{n_id}
 </update>
 </mapper>

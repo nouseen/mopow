@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.google.code.kaptcha.Constants;
+
 import cn.mopow.dao.UserDao;
 import cn.mopow.entity.MpAdmin;
 import cn.mopow.entity.MpResult;
@@ -17,13 +19,21 @@ import cn.mopow.util.MpUtil;
 public class UserServiceImpl implements UserService{
 	@Resource
 	private UserDao userDao;
-	public MpResult checkName(HttpServletRequest request,String name,String pwd) {
+	public MpResult checkName(HttpServletRequest request,String name,String pwd,String captcha) {
 		MpResult result = new MpResult();
 		HttpSession session=request.getSession();
-		MpAdmin admin = userDao.findByName(name);
+		String sysCaptch=(String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY); 
+		System.out.println(captcha);
+		MpAdmin admin = userDao.findByName(name); 
+		if (sysCaptch==null||captcha==null||!sysCaptch.toLowerCase().equals(captcha.toLowerCase())){
+			result.setMsg("验证码错误！"); 
+			result.setStatus(0); 
+			return result;
+		} 
+		
 		if(admin==null||pwd==null){
 			result.setMsg("用户名或密码错误！");
-			result.setStatus(0);
+			result.setStatus(0); 
 			return result;
 		}
 		

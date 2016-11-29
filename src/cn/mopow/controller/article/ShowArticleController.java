@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.mopow.entity.MpResult;
-import cn.mopow.service.NewsService;
+import cn.mopow.service.ArticleService;
 
 @Controller
 @RequestMapping("/news")
 public class ShowArticleController {
 	@Resource
 	
-	private NewsService service;
+	private ArticleService service;
 	@RequestMapping("/showthenews.do")
 	@ResponseBody
 	public MpResult execute(String id) {
-		MpResult result = service.showTheNews(id);
+		MpResult result = service.showTheArticle(id);
 		return result;
 	}
 }

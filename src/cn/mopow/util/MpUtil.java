@@ -59,26 +59,4 @@ public class MpUtil {
 			String result = Base64.encodeBase64String(output);
 			return result;
 		} 
-	public static Article viewCreate(Article news){
-		String img;
-		String title = news.getN_title();
-		String body = news.getN_body();
-		news.setN_type("1");
-		String id=news.getN_id();
-		Pattern pattern = Pattern.compile("http[\\s\\S]{1,100}(.jpeg|.jpg|.png|.jif)");
-		Matcher matcher = pattern.matcher(body);
-		body=body.replaceAll("<[^<]{0,100}>", "");
-		if(matcher.find()){
-			img=matcher.group();
-			body="<img class='news_img' src='"+img+"'><a href='news-"+id+".do' target='"+id+"_black'>"+title+"</a>";
-			news.setN_type("2");
-			news.setN_img(img);
-		}else if(body.length()>=110){
-			body=body.substring(0,110);
-		}
-		System.out.println(body);
-		news.setN_view(body);
-		return news;
-}
-	
 }

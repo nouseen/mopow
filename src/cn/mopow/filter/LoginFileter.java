@@ -31,13 +31,12 @@ public class LoginFileter implements Filter{
         String uri=request1.getRequestURI(); 
 		if(session==null||session.getAttribute("uName") == null){
 			System.out.println("用户未登陆，跳转到登陆页面");
-			 Pattern pattern = Pattern.compile("mengke");
+			 Pattern pattern = Pattern.compile("mopow");
 		     Matcher matcher = pattern.matcher(uri);
 			 while(matcher.find()){
-				 response1.sendRedirect("/mengke/log_in.html");
+				 response1.sendRedirect("/mopow/log_in.html");
 				 return;
 			 }
-		        
 			response1.sendRedirect("/log_in.html");
 			return ;
 		}else{

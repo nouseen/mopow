@@ -8,11 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.mopow.service.NewsService;
+import cn.mopow.service.ArticleService;
 @Controller
 public class ArticleJumpController {
 	@Resource
-	private NewsService service;
+	private ArticleService service;
 	@RequestMapping("/news-*.do")
 public ModelAndView execute(HttpServletRequest request, HttpServletResponse response){
 	ModelAndView mv=new ModelAndView("news.html");
@@ -30,3 +30,4 @@ public ModelAndView execute1(HttpServletRequest request, HttpServletResponse res
 	return mv;
 }
 }
+ 

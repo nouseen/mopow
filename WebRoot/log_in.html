@@ -6,30 +6,28 @@
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <link rel="stylesheet" href="css/login.css" />
 <script type="text/javascript">
-	 function changeValidateCode(obj) {   
-		obj.src="image/captcha-image.do?"+ Math.floor(Math.random()*100);   
-	}    
+	 function changeValidateCode(obj) {  
+	 document.getElementById("kaptchaImage").src="image/captcha-image.do?"+ Math.floor(Math.random()*100);   
+	}     
 	$(function(){
-	  $("#password").keydown(function(event){
-	  	if(event.keyCode!=13){
+	  $("#password,#captcha").keydown(function(event){
+	  	if(event.keyCode!=13){ 
 	  		return;
 	  	};
 	   var name = $("#count").val().trim();
         var password = $("#password").val().trim();
-            $.ajax({
+        var captcha = $("#captcha").val().trim();
+            $.ajax({ 
           url:"user/login.do",
           type:"post",
-          data:{"name":name,"pwd":password},
+          data:{"name":name,"pwd":password,"captcha":captcha},
           dataType:"json",
           success:function(result){
-            //result是服务器返回的json结果
+            //result是服务器返回的json结果 
             if(result.status){
-              var userId = result.data;
-              window.location.href="upload.jsp"; 
+              var userId = result.data; 
+              window.location.href="admin/index.html"; 
             }else {
-             /** $("#count_msg").html(result.msg);
-            }else if(result.status==2){
-              $("#password_msg").html(result.msg);*/
               alert(result.msg);
             }
           },
@@ -41,22 +39,19 @@
 	  });
       $("#login").click(function(){
         var name = $("#count").val().trim();
-        var password = $("#password").val().trim();
+        var password = $("#password").val().trim(); var captcha = $("#captcha").val().trim();
             $.ajax({
           url:"user/login.do", 
           type:"post",
-          data:{"name":name,"pwd":password},
+          data:{"name":name,"pwd":password,"captcha":captcha},
           dataType:"json",
           success:function(result){
             //result是服务器返回的json结果
-            if(result.status){
+            if(result.status){ 
               var userId = result.data; 
-              window.location.href="worksystem.html";
+              window.location.href="admin/index.html";
             }else {
-             /** $("#count_msg").html(result.msg);
-            }else if(result.status==2){
-              $("#password_msg").html(result.msg);*/
-              alert(result.msg);
+              alert(result.msg); 
             }
           },
           error:function(){
@@ -81,7 +76,7 @@
         <dt></dt>
         <dt>
           <div class='letter'>
-            用户名:&nbsp;<input type="text" name="" id="count" tabindex='1' />
+            帐&nbsp;号:&nbsp;<input type="text" name="" id="count" tabindex='1' />
             <span id="count_msg"></span>
           </div>
         </dt>
@@ -91,17 +86,17 @@
               id="password" tabindex='2' /> <span id="password_msg"></span>
           </div>
         </dt>
-        <dt> 
-        	<div>
-        		 <img src="image/captcha-image.do" width="110" height="40" id="kaptchaImage" 	onclick="changeValidateCode(this);" style="margin-bottom:-15px;"/>请输入密码<input >   
-        	</div>
-        </dt>
-        <dt>
-          <div>
+        <dt>   
+        	<div class='letter'>
+        		 <input id="captcha" type="text"  style="width:75px;height:30px;margin-right:10px;margin-left:44px;"/><img src="image/captcha-image.do" width="110" height="40" id="kaptchaImage" 	onclick="changeValidateCode(this);" style="margin-bottom:-15px;"/> <a onclick="changeValidateCode(this);" style="cursor:pointer">换一换</a>   
+        	</div>  
+        </dt> 
+        <dt>  
+          <div> 
             <input type="button" name="" id="login"
               value='&nbsp登&nbsp录&nbsp' tabindex='3' /> <input
               type="button" name="" id="sig_in"
-              value='忘记密码' tabindex='4' />
+              value='忘记密码' tabindex='4' />  
           </div>
         </dt>
         

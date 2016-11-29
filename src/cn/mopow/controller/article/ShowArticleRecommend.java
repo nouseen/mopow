@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.mopow.entity.MpResult;
-import cn.mopow.service.NewsService;
+import cn.mopow.service.ArticleService;
 @Controller
 @RequestMapping("/news")
 public class ShowArticleRecommend {
 	@Resource
-	private NewsService service;
+	private ArticleService service;
 	@RequestMapping("/recommendnews.do")
 	@ResponseBody
 	public MpResult execute(int page){
-		MpResult result=service.findRecommendNews(page);
+		MpResult result=service.findRecommendArticle(page);
 		return result;
 	}
 }

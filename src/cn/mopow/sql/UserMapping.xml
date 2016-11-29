@@ -4,7 +4,7 @@
  <mapper namespace="cn.mopow.dao.UserDao">
  <select id="findByName"  parameterType="string"
 		resultType="cn.mopow.entity.MpAdmin">
-	SELECT user_name,user_password FROM  mk_admin WHERE
+	SELECT user_name,user_password FROM  mp_admin WHERE
 	 user_name=#{name} 
 	</select>
 </mapper> 

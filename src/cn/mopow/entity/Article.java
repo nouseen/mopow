@@ -7,8 +7,8 @@ public class Article  implements Serializable {
 	private String n_id;
 	private String  n_title;
 	private String n_body;
-	private Timestamp n_createtime;
-	private String n_type;
+	private Timestamp n_createtime; 
+	private String n_position;
 	private String n_view;
 	private String n_img;
 	private String n_abstract;
@@ -36,11 +36,11 @@ public class Article  implements Serializable {
 	public void setN_createtime(Timestamp n_createtime) {
 		this.n_createtime = n_createtime;
 	}
-	public String getN_type() {
-		return n_type;
+	public String getN_position() {
+		return n_position;
 	}
-	public void setN_type(String n_type) {
-		this.n_type = n_type;
+	public void setN_position(String n_position) {
+		this.n_position = n_position;
 	}
 	public String getN_view() {
 		return n_view;
